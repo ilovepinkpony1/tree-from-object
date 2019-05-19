@@ -2,35 +2,38 @@
 
 const container = document.getElementById('container');
 const data = {
-  "Рыбы": {
-    "Форель": {},
-    "Щука": {}
+  'Рыбы': {
+    'Форель': {},
+    'Щука': {}
   },
 
-  "Деревья": {
-    "Хвойные": {
-      "Лиственница": {},
-      "Ель": {}
+  'Деревья': {
+    'Хвойные': {
+      'Лиственница': {},
+      'Ель': {}
     },
-    "Цветковые": {
-      "Берёза": {},
-      "Тополь": {}
+    'Цветковые': {
+      'Берёза': {},
+      'Тополь': {}
     }
   }
 };
 
 function createTree(place, tree) {
-  let ul = document.createElement('ul');
-  place.append(ul);
+  const ul = document.createElement('ul');
 
-  for (let key in tree) {
-    let li = document.createElement('li');
-    ul.append(li);
-    li.innerHTML = key; 
-    
-    if (Object.keys(tree[key]).length > 0) {
-      createTree(li, tree[key]);
-    }
+  if (place) {
+    place.append(ul);
+
+    Object.keys(tree).forEach(node => {
+      const li = document.createElement('li');
+          ul.append(li);
+      li.textContent = node;
+  
+         if (Object.keys(tree[node]).length > 0) {
+        createTree(li, tree[node]);
+      }
+    });
   }
 }
 
