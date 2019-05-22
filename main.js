@@ -27,11 +27,11 @@ function createTree(place, tree) {
 
     Object.keys(tree).forEach(node => {
       const li = document.createElement('li');
-          ul.append(li);
       li.textContent = node;
+      ul.append(li);
   
          if (Object.keys(tree[node]).length > 0) {
-        createTree(li, tree[node]);
+          createTree(li, tree[node]);
       }
     });
   }
